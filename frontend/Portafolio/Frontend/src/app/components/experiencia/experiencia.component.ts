@@ -21,7 +21,6 @@ export class ExperienciaComponent implements OnInit {
     this.cargarExperiencia();
     if (this.tokenService.getToken()) {
       this.isLogged = true;
-
     } else {
       this.isLogged = false;
     }
@@ -29,5 +28,17 @@ export class ExperienciaComponent implements OnInit {
 
   cargarExperiencia(): void {
     this.sExperiencia.lista().subscribe(data => { this.expe = data; })
+  }
+
+  delete(id?: number) {
+    if (id != undefined) {
+      this.sExperiencia.delete(id).subscribe(
+        data => {
+          this.cargarExperiencia();
+        }, err => {
+          alert("No se pudo borrar la experiencia");
+        }
+      )
+     }
   }
 }
