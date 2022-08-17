@@ -1,30 +1,36 @@
 <div class="row">
     <h1>Educación</h1>
-    <div class="col-lg-1"></div>
-    <div class="col-lg-11">
-        <ul>
-            <li><h1>Instituto Técnico Superior Juan Vucetich</h1> - <h3>2015</h3></li>
-            <p> Perito en Acciodentología Vial</p>
-        </ul>
-        <ul>
-            <li><h1>Biblioteca Pública General San Martin</h1> - <h3>2019</h3></li>
-            <p>Curso de Fotografía e Iluminación</p>
-        </ul>
-        <ul>
-            <li><h1>Le Wagon</h1> - <h3>2020</h3></li>
-            <p>Workshop Introductorio a HTML5 y CSS</p>
-        </ul>
-        <ul>
-            <li><h1>EggCoperation</h1> - <h3>2021</h3></li>
-            <p>Curso Programación FullStack</p>
-        </ul>
-        <ul>
-            <li><h1>Fundación Educativa Santísima Trinidad (FESAT) </h1> - <h3>2022</h3></li>
-            <p>Curso Introductorio al lenguaje Python</p>
-        </ul>
-        <ul>
-            <li><h1>Universidad Tecnológica Nacional (UTN) </h1> - <h3>2022</h3></li>
-            <p>Ingeniería en Sistemas</p>
-        </ul>
+    <div class="col-lg-2">
+        <button type="button" class="btn btn-light" routerLink="/nuevaedu" *ngIf="isLogged">
+            Agregar educación
+        </button>
     </div>
+
+    <div class="col lg 1"></div>
+    <div class="col-lg-11">
+        <table class="table">
+            <tbody>
+                <tr *ngFor="let Educacion of educacion">
+                    <td>
+                        <h2>{{Educacion.nombreE}}</h2>
+                    </td>
+
+                    <td>{{Educacion.descripcionE}}</td>
+                    <td *ngIf="isLogged">
+                        <button class="btn btn-success" routerLink="/editedu/{{Educacion.id}}">
+                            <i class="bi bi-pencil-square"></i>editar</button>
+                    </td>
+
+                    <td *ngIf="isLogged">
+                        <button class="btn btn-danger" (click)="delete(Educacion.id)">
+                            <i class="bi bi-trash3-fill"></i>borrar</button>
+                    </td>
+
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
 </div>
